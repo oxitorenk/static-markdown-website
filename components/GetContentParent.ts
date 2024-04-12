@@ -12,7 +12,7 @@ const GetContentParent = (parentID: string): IContentParent => {
       slug: parentID,
       title: matterResult.data.title,
       order: matterResult.data.order,
-      content: GetContents(parentID)
+      content: GetContents(parentID),
     };
   }
 
