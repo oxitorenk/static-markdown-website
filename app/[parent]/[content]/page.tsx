@@ -15,8 +15,11 @@ const PostPage = (props: any) => {
   const parent = props.params.parent;
   const content = props.params.content;
   const post = getPostContent(parent, content);
+  const parentData = GetContentParent(parent);
   const contentParents = GetContentParents().sort((a, b) =>
     a.order > b.order ? 1 : -1);
+  const isFirstPage = parentData.order == 1 && post.data.order == 1;
+  const isLastPage = parentData.order == contentParents.length && post.data.order == parentData.content.length;
 
   return (
     <div>
@@ -104,10 +107,12 @@ const PostPage = (props: any) => {
           </article>
 
           <dl className="flex pt-6 mt-6 border-t border-slate-200">
+
+          {isFirstPage == false ? (
             <div className="mr-auto text-left">
-              <dt className="text-sm font-normal tracking-tight text-slate-600">
-                Previous
-              </dt>
+                <dt className="text-sm font-normal tracking-tight text-slate-600">
+                  Previous
+                </dt>
 
               <dd className="mt-1">
                 <a
@@ -117,9 +122,10 @@ const PostPage = (props: any) => {
                   Quick start guide
                 </a>
               </dd>
-            </div>
+            </div> ) : (null)}
 
-            <div className="ml-auto text-right">
+            {isLastPage == false ? (
+              <div className="ml-auto text-right">
               <dt className="text-sm font-normal tracking-tight text-slate-600">
                 Next
               </dt>
@@ -133,6 +139,8 @@ const PostPage = (props: any) => {
                 </a>
               </dd>
             </div>
+            ): (null)}
+            
           </dl>
         </div>
       </main>
