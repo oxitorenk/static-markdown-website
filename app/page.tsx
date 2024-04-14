@@ -53,7 +53,7 @@ export default function Home() {
                     .map((contentData) => (
                       <li>
                         <a
-                          href={contentData.slug}
+                          href={"/" + contentData.slug}
                           className="text-slate-900 hover:text-slate-800"
                         >
                           {contentData.title}
