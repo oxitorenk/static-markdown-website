@@ -4,12 +4,14 @@ const QuickStartVideo = () => (
   <a
     href="https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity"
     target="_blank"
+    rel="noopener noreferrer"
     className="flex flex-col w-full mt-4 overflow-hidden rounded-lg shadow-xl md:flex-row md:w-4/5"
+    aria-label="Watch Quick Start Video"
   >
     <div className="flex items-center justify-center w-full px-4 py-16 text-sm font-normal md:w-1/3 text-slate-900/20 bg-gradient-to-br from-indigo-200 via-sky-100 to-indigo-100">
       <img
         src="https://unity.com/sites/default/files/styles/810_scale_width/public/2020-02/unity-scriptable-object-handling-player-death_0.jpg?itok=dfR_85Q-"
-        alt=""
+        alt="Unity Scriptable Objects"
       />
     </div>
 
@@ -25,11 +27,12 @@ const QuickStartVideo = () => (
   </a>
 );
 
-const QuickAccessItem = ({href, title, description} : {href:string, title:string, description:string}) => (
+const QuickAccessItem = ({ href, title, description }: { href: string; title: string; description: string }) => (
   <li>
     <a
       href={href}
       className="block px-6 py-4 border rounded bg-slate-50 border-slate-100 hover:bg-white"
+      aria-label={title}
     >
       <h4 className="font-bold tracking-tight text-slate-900">{title}</h4>
 

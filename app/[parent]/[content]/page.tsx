@@ -11,6 +11,18 @@ const getPostContent = (parent: string, content: string) => {
   return matter(fileContent);
 };
 
+export const generateStaticParams = async () => {
+  const parents = GetContentParents();
+  const allSlugs = parents.map((parent) =>
+    parent.content.map((content) => ({
+      parent: parent.slug,
+      content: content.slug,
+    }))
+  );
+  
+  return allSlugs;
+};
+
 const PostPage = (props: any) => {
   const { parent, content } = props.params;
   const post = getPostContent(parent, content);
