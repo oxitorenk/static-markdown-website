@@ -1,73 +1,86 @@
-import GetContentParents from "@/components/GetContentParents";
+import React from "react";
 
-export default function Home() {
-  const contentParents = GetContentParents().sort((a, b) =>
-    a.order > b.order ? 1 : -1
-  );
-
-  return (
-    <main className="relative flex justify-center mx-auto max-w-8xl sm:px-2 lg:px-8 xl:px-12">
-      <label
-        htmlFor="navigation"
-        className="fixed bottom-0 left-0 z-50 flex items-center justify-center w-12 h-12 mb-4 ml-4 bg-white border rounded-full shadow-lg cursor-pointer text-slate-600 border-slate-300 lg:hidden transition duration-200 ease-in-out active:scale-95"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M4 8h16M4 16h16"
-          />
-        </svg>
-      </label>
-
-      <input
-        type="checkbox"
-        name="navigation"
-        id="navigation"
-        className="hidden peer"
+const QuickStartVideo = () => (
+  <a
+    href="https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity"
+    target="_blank"
+    className="flex flex-col w-full mt-4 overflow-hidden rounded-lg shadow-xl md:flex-row md:w-4/5"
+  >
+    <div className="flex items-center justify-center w-full px-4 py-16 text-sm font-normal md:w-1/3 text-slate-900/20 bg-gradient-to-br from-indigo-200 via-sky-100 to-indigo-100">
+      <img
+        src="https://unity.com/sites/default/files/styles/810_scale_width/public/2020-02/unity-scriptable-object-handling-player-death_0.jpg?itok=dfR_85Q-"
+        alt=""
       />
-      <div className="fixed top-[3.5rem] h-screen shadow-xl px-4 left-0 hidden peer-checked:block lg:relative lg:top-0 lg:h-auto lg:px-0 lg:block lg:flex-none lg:shadow-none">
-        <div className="absolute inset-y-0 right-0 w-full lg:w-[50vw] bg-white lg:bg-slate-50"></div>
+    </div>
 
-        <nav className="sticky top-[4.5rem] w-64 pr-8 text-base lg:text-sm xl:w-72 xl:pr-16">
-          <ul
-            role="list"
-            className="-ml-0.5 h-[calc(100vh-4.5rem)] overflow-y-auto py-7 pl-0.5 space-y-8"
-          >
-            {contentParents.map((parentData) => (
-              <li>
-                <h3 className="font-semibold tracking-tight text-slate-900">
-                  {parentData.title}
-                </h3>
+    <div className="w-full px-6 py-4 border-t border-b border-r md:w-2/3 border-slate-200">
+      <h3 className="text-xl font-semibold tracking-tight text-slate-900">
+        Game Architecture with Scriptable Objects
+      </h3>
 
-                <ul role="list" className="pl-3 mt-3 space-y-2">
-                  {parentData.content
-                    .sort((a, b) => (a.order > b.order ? 1 : -1))
-                    .map((contentData) => (
-                      <li>
-                        <a
-                          href={"/" + contentData.slug}
-                          className="text-slate-900 hover:text-slate-800"
-                        >
-                          {contentData.title}
-                        </a>
-                      </li>
-                    ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <p className="mt-1 text-lg text-slate-600">
+        Watch this GDC talk to understand the core ideas behind this plugin.
+      </p>
+    </div>
+  </a>
+);
 
-      <div className="flex-auto max-w-2xl min-w-0 px-4 py-10 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16"></div>
-    </main>
-  );
-}
+const QuickAccessItem = ({href, title, description} : {href:string, title:string, description:string}) => (
+  <li>
+    <a
+      href={href}
+      className="block px-6 py-4 border rounded bg-slate-50 border-slate-100 hover:bg-white"
+    >
+      <h4 className="font-bold tracking-tight text-slate-900">{title}</h4>
+
+      <p className="text-slate-600">{description}</p>
+    </a>
+  </li>
+);
+
+const Home = () => (
+  <div className="flex-auto max-w-2xl min-w-0 px-4 py-10 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
+    <article>
+      <header>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+          Quick Start
+        </h1>
+      </header>
+
+      <p className="mt-2 text-xl text-slate-600">
+        Need to get started quickly with Unity Atoms? You will learn all the basics in just minutes.
+      </p>
+
+      <QuickStartVideo />
+
+      <h3 className="mt-16 text-base font-bold tracking-tight text-slate-900">
+        Quick Access
+      </h3>
+
+      <ul className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <QuickAccessItem
+          href="/introduction/installation"
+          title="Installation"
+          description="Welcome to Unity Atoms! There are several ways to add Unity Atoms to your project. Learn how to install unity atoms to your project."
+        />
+        <QuickAccessItem
+          href="/tutorials/creating-atoms"
+          title="Creating Atoms"
+          description="There are several ways of creating Atoms in your project. Learn how to create atoms and use them."
+        />
+        <QuickAccessItem
+          href="/tutorials/generator"
+          title="Generator"
+          description="Almost any project will eventually have custom data or reference types. Learn how to create atoms from custom data."
+        />
+        <QuickAccessItem
+          href="/subpackages/base-atoms"
+          title="Base Atoms"
+          description="Base set of Atoms based on Unity Atoms Core. Learn more about them."
+        />
+      </ul>
+    </article>
+  </div>
+);
+
+export default Home;
