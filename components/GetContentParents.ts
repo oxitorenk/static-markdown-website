@@ -1,7 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { IContentParent } from "@/interfaces/IContentParent";
 import GetContents from "./GetContents";
+import { IContentParent } from "./GetContentParent";
 
 const GetContentParents = (): IContentParent[] => {
   const folder = "contents/";

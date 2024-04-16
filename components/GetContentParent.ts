@@ -1,7 +1,14 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { IContentParent } from "@/interfaces/IContentParent";
+import { IContent } from "./GetContents";
 import GetContents from "./GetContents";
+
+export interface IContentParent {
+  slug: string;
+  title: string;
+  order: number;
+  content: IContent[];
+}
 
 const GetContentParent = (parentID: string): IContentParent => {
     const filePath = "contents/" + parentID + "/info.md";

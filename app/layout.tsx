@@ -2,8 +2,8 @@ import React from "react";
 import { Metadata } from "next";
 import "./globals.css";
 import GetContentParents from "@/components/GetContentParents";
-import { IContentParent } from "@/interfaces/IContentParent";
-import { IContent } from "@/interfaces/IContent";
+import { IContent } from "@/components/GetContents";
+import { IContentParent } from "@/components/GetContentParent";
 
 interface RootLayoutProps {
   children: React.ReactNode;

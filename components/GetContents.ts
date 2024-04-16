@@ -1,6 +1,11 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { IContent } from "@/interfaces/IContent";
+
+export interface IContent {
+  title: string;
+  slug: string;
+  order: number;
+}
 
 const GetContents = (parentName: string): IContent[] => {
   const folder = "contents/" + parentName + "/subcontents/";

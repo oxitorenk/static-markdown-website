@@ -3,6 +3,7 @@ import Markdown from "markdown-to-jsx";
 import matter from "gray-matter";
 import GetContentParent from "@/components/GetContentParent";
 import GetContentParents from "@/components/GetContentParents";
+import GetContents from "@/components/GetContents";
 
 const getPostContent = (parent: string, content: string) => {
   const folder = `contents/${parent}/subcontents/`;
@@ -13,13 +14,13 @@ const getPostContent = (parent: string, content: string) => {
 
 export const generateStaticParams = async () => {
   const parents = GetContentParents();
-  const allSlugs = parents.map((parent) =>
+  const allSlugs = parents.flatMap((parent) =>
     parent.content.map((content) => ({
       parent: parent.slug,
-      content: content.slug,
+      content: content.slug.split("/")[1],
     }))
   );
-  
+
   return allSlugs;
 };
 
