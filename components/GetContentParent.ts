@@ -10,16 +10,16 @@ export interface IContentParent {
   content: IContent[];
 }
 
-const GetContentParent = (parentID: string): IContentParent => {
-    const filePath = "contents/" + parentID + "/info.md";
+const GetContentParent = (parentSlug: string): IContentParent => {
+    const filePath = `contents/${parentSlug}/info.md`;
     const fileContent = fs.readFileSync(filePath, "utf8");
     const matterResult = matter(fileContent);
 
     return {
-      slug: parentID,
+      slug: parentSlug,
       title: matterResult.data.title,
       order: matterResult.data.order,
-      content: GetContents(parentID),
+      content: GetContents(parentSlug),
     };
   }
 

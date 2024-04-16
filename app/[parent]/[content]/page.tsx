@@ -5,10 +5,11 @@ import GetContentParent from "@/components/GetContentParent";
 import GetContentParents from "@/components/GetContentParents";
 import GetContents from "@/components/GetContents";
 
-const getPostContent = (parent: string, content: string) => {
+const getContent = (parent: string, content: string) => {
   const folder = `contents/${parent}/subcontents/`;
   const file = `${folder}${content}.md`;
   const fileContent = fs.readFileSync(file, "utf-8");
+
   return matter(fileContent);
 };
 
@@ -26,7 +27,7 @@ export const generateStaticParams = async () => {
 
 const PostPage = (props: any) => {
   const { parent, content } = props.params;
-  const post = getPostContent(parent, content);
+  const post = getContent(parent, content);
   const parentData = GetContentParent(parent);
   const contentParents = GetContentParents().sort((a, b) => a.order - b.order);
   const relatedContents = parentData.content.sort((a, b) => a.order - b.order);

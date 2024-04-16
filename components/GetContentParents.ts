@@ -7,13 +7,12 @@ const GetContentParents = (): IContentParent[] => {
   const folder = "contents/";
   const files = fs.readdirSync(folder);
 
-  // Get gray-matter data from each file
+  // Get metadata from each file
   return files.map((folderName) => {
-    const fileContents = fs.readFileSync(
-      folder + folderName + "/info.md",
-      "utf8"
-    );
+    const filePath = `${folder + folderName}/info.md`;
+    const fileContents = fs.readFileSync(filePath, "utf8");
     const matterResult = matter(fileContents);
+
     return {
       slug: folderName,
       title: matterResult.data.title,

@@ -8,18 +8,18 @@ export interface IContent {
 }
 
 const GetContents = (parentName: string): IContent[] => {
-  const folder = "contents/" + parentName + "/subcontents/";
+  const folder = `contents/${parentName}/subcontents/`;
   const files = fs.readdirSync(folder);
-  const markdownPost = files.filter((file) => file.endsWith(".md"));
+  const markdownFileNames = files.filter((file) => file.endsWith(".md"));
 
-  // Get gray-matter data from each file
-  return markdownPost.map((fileName) => {
-    const fileContents = fs.readFileSync(folder + fileName, "utf8");
-    const matterResult = matter(fileContents);
+  // Get metadata from each file
+  return markdownFileNames.map((fileName) => {
+    const fileContent = fs.readFileSync(folder + fileName, "utf8");
+    const matterResult = matter(fileContent);
     return {
       title: matterResult.data.title,
       order: matterResult.data.order,
-      slug: parentName + "/" + fileName.replace(".md", ""),
+      slug: `${parentName}/${fileName.replace(".md", "")}`
     };
   });
 };
