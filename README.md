@@ -16,7 +16,7 @@ This is a minimalist yet powerful technical documentation website built with Nex
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your_username/your_repo.git
+    git clone https://github.com/akbulutoguzhan/static-markdown-website.git
     ```
 
 2. **Install dependencies:**
