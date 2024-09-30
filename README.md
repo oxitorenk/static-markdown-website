@@ -2,6 +2,8 @@
 
 This is a minimalist yet powerful technical documentation website built with Next.js, TypeScript, Tailwind CSS, and markdown files.
 
+[Live Demo](https://static-markdown.oxitorenk.com/)
+
 ## Features
 
 - **Static Site Generation:** Utilizes Next.js for static site generation, enabling fast loading times and improved SEO.
